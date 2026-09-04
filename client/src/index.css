@@ -276,3 +276,44 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--saffron); outli
 .coverage-mark { width: 21px; height: 21px; object-fit: contain; margin-right: -2px; }
 
 @media (max-width: 760px) { .evidence-exhibit { min-height: 300px; }.signal-exhibit { height: 320px; } }
+
+/* AARAMBHA mark + motion system: deliberate signal, never decorative noise. */
+.brand-mark { position: relative; display: block; flex: 0 0 auto; width: 31px; height: 31px; }
+.brand-mark::before { content: ""; position: absolute; inset: 3px; border: 1px solid rgba(216,138,53,.32); transform: rotate(45deg); transition: transform .4s var(--ease-out), border-color .3s ease; }
+.brand-lockup:hover .brand-mark::before { transform: rotate(135deg); border-color: rgba(216,138,53,.72); }
+.brand-mark-line { position: absolute; left: 6px; display: block; width: 18px; height: 2px; background: var(--paper); transform-origin: left center; transition: transform .35s var(--ease-out), background .3s ease; }
+.mark-line-a { top: 9px; transform: rotate(-22deg); }.mark-line-b { top: 15px; transform: rotate(22deg); }.mark-line-c { top: 21px; width: 14px; transform: rotate(-22deg); }
+.brand-mark-notch { position: absolute; top: 7px; right: 4px; width: 5px; height: 5px; border-radius: 50%; background: var(--saffron); box-shadow: 0 0 0 3px rgba(216,138,53,.14); transition: transform .35s var(--ease-out), box-shadow .35s ease; }
+.brand-lockup:hover .brand-mark-line { background: var(--saffron-soft); }.brand-lockup:hover .mark-line-b { transform: rotate(30deg); }.brand-lockup:hover .brand-mark-notch { transform: scale(1.35); box-shadow: 0 0 0 5px rgba(216,138,53,.12); }
+.brand-mark-compact { width: 21px; height: 21px; }.brand-mark-compact::before { inset: 2px; }.brand-mark-compact .brand-mark-line { left: 4px; width: 13px; height: 1.4px; }.brand-mark-compact .mark-line-a { top: 6px; }.brand-mark-compact .mark-line-b { top: 10px; }.brand-mark-compact .mark-line-c { top: 14px; width: 10px; }.brand-mark-compact .brand-mark-notch { top: 5px; right: 2px; width: 3px; height: 3px; box-shadow: 0 0 0 2px rgba(216,138,53,.14); }
+
+.reveal-on-scroll { --reveal-delay: 0ms; opacity: 0; transform: translateY(18px); transition: opacity .72s var(--ease-out) var(--reveal-delay), transform .72s var(--ease-out) var(--reveal-delay); }
+.reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+.hero-art { animation: hero-drift 18s ease-in-out infinite alternate; transform-origin: 58% 45%; }
+.hero-section::before { content: ""; position: absolute; z-index: -1; top: 0; left: -25%; width: 22%; height: 1px; background: linear-gradient(90deg, transparent, rgba(216,138,53,.8), transparent); box-shadow: 0 0 18px rgba(216,138,53,.35); animation: scan-line 8s linear infinite; }
+.hero-intelligence-panel { position: relative; overflow: hidden; }
+.hero-intelligence-panel::after { content: ""; position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(216,138,53,.12); opacity: 0; animation: panel-pulse 3.8s ease-in-out infinite; }
+.hero-intelligence-panel .bar-track span { transform-origin: left center; animation: bar-grow 1.2s var(--ease-out) .4s both; }
+.hero-intelligence-panel .bar-track .bar-saffron { animation-delay: .62s; }
+.desktop-nav a:not(.nav-cta) { position: relative; }
+.desktop-nav a:not(.nav-cta)::after { content: ""; position: absolute; right: 0; bottom: -7px; left: 0; height: 1px; background: var(--saffron); transform: scaleX(0); transform-origin: right center; transition: transform .25s var(--ease-out); }
+.desktop-nav a:not(.nav-cta):hover::after { transform: scaleX(1); transform-origin: left center; }
+.button svg, .text-action svg, .arrow-link svg, .card-arrow svg { transition: transform .25s var(--ease-out); }.button:hover svg, .text-action:hover svg, .arrow-link:hover svg, .card-arrow:hover svg { transform: translate(3px, -3px); }
+.capability-card .card-icon { transition: transform .28s var(--ease-out), background .25s ease, color .25s ease; }.capability-card:hover .card-icon { transform: translateY(-3px) rotate(-5deg); }.capability-feature:hover .card-icon { background: rgba(216,138,53,.12); }
+.step-item.is-visible .step-line span { animation: line-draw .85s var(--ease-out) .15s both; transform-origin: left center; }.step-item:nth-child(2).is-visible .step-line span { animation-delay: .25s; }.step-item:nth-child(3).is-visible .step-line span { animation-delay: .35s; }.step-item:nth-child(4).is-visible .step-line span { animation-delay: .45s; }
+.board-focus { animation: focus-pulse 2.8s ease-in-out infinite; }.signal-cluster { animation: signal-pulse 3.7s ease-in-out infinite; }.cluster-b { animation-delay: .7s; }.cluster-c { animation-delay: 1.4s; }.cluster-d { animation-delay: 1.9s; }.signal-route { animation: route-flicker 3.2s ease-in-out infinite; }.signal-route-b { animation-delay: .8s; }.signal-route-c { animation-delay: 1.5s; }
+
+@keyframes hero-drift { from { transform: scale(1.01) translate3d(-.5%, -.25%, 0); } to { transform: scale(1.05) translate3d(.8%, .3%, 0); } }
+@keyframes scan-line { from { transform: translateX(0); opacity: 0; } 15% { opacity: .7; } 80% { opacity: .7; } to { transform: translateX(720%); opacity: 0; } }
+@keyframes panel-pulse { 0%, 100% { opacity: 0; transform: scale(.99); } 45% { opacity: 1; transform: scale(1); } 68% { opacity: 0; transform: scale(1.01); } }
+@keyframes bar-grow { from { transform: scaleX(0); opacity: .2; } to { transform: scaleX(1); opacity: 1; } }
+@keyframes line-draw { from { transform: scaleX(0); opacity: .2; } to { transform: scaleX(1); opacity: 1; } }
+@keyframes focus-pulse { 0%, 100% { transform: scale(1); opacity: .82; } 50% { transform: scale(1.07); opacity: 1; } }
+@keyframes signal-pulse { 0%, 100% { transform: scale(.95); opacity: .52; } 50% { transform: scale(1.06); opacity: 1; } }
+@keyframes route-flicker { 0%, 100% { opacity: .35; } 48% { opacity: .9; } 60% { opacity: .5; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal-on-scroll { opacity: 1; transform: none; }
+}
