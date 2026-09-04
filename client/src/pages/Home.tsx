@@ -23,8 +23,8 @@ import {
   X,
 } from "lucide-react";
 
-const heroImage = "/manus-storage/aarambha-hero_b8f51140.png";
-const markImage = "/manus-storage/aarambha-mark_1d84befa.png";
+const heroImage = "/assets/aarambha-hero.webp";
+const markImage = "/assets/aarambha-mark.svg";
 
 const navItems = [
   ["Platform", "#platform"],
