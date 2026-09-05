@@ -4,35 +4,66 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
 
+// Pages
+import Home from "./pages/Home";
+import Overview from "./pages/Overview";
+import MpsRegistry from "./pages/MpsRegistry";
+import ProjectsList from "./pages/ProjectsList";
+import ProjectDetail from "./pages/ProjectDetail";
+import TendersList from "./pages/TendersList";
+import ContractsList from "./pages/ContractsList";
+import ContractorsList from "./pages/ContractorsList";
+import RiskExplorer from "./pages/RiskExplorer";
+import InvestigationCentre from "./pages/InvestigationCentre";
+import CaseDetail from "./pages/CaseDetail";
+import AiInvestigator from "./pages/AiInvestigator";
+import DocVerification from "./pages/DocVerification";
+import ReportsStudio from "./pages/ReportsStudio";
+import DataSources from "./pages/DataSources";
 
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
+      {/* Public Landing Page */}
+      <Route path="/" component={Home} />
+
+      {/* Internal Intelligence & Audit Modules */}
+      <Route path="/overview" component={Overview} />
+      <Route path="/mps" component={MpsRegistry} />
+      <Route path="/projects" component={ProjectsList} />
+      <Route path="/projects/:id" component={ProjectDetail} />
+      <Route path="/tenders" component={TendersList} />
+      <Route path="/contracts" component={ContractsList} />
+      <Route path="/contractors" component={ContractorsList} />
+      <Route path="/risk" component={RiskExplorer} />
+      <Route path="/investigations" component={InvestigationCentre} />
+      <Route path="/investigations/:id" component={CaseDetail} />
+      <Route path="/ai-investigator" component={AiInvestigator} />
+      <Route path="/verify" component={DocVerification} />
+      <Route path="/reports" component={ReportsStudio} />
+      <Route path="/methodology" component={DataSources} />
+
+      {/* Fallback */}
+      <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
+import { EvidenceProvider } from "./contexts/EvidenceContext";
+import { EvidenceDrawer } from "./components/ui/EvidenceDrawer";
 
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          <Toaster />
-          <Router />
+          <EvidenceProvider>
+            <Toaster />
+            <EvidenceDrawer />
+            <Router />
+          </EvidenceProvider>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
