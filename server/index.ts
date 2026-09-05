@@ -223,9 +223,9 @@ export function configureApp() {
   });
 
   // Grounded AI Query
-  app.post("/api/v1/ai/query", (req, res) => {
+  app.post("/api/v1/ai/query", async (req, res) => {
     const { question = "" } = req.body || {};
-    const groundedResponse = processGroundedQuery(question);
+    const groundedResponse = await processGroundedQuery(question);
     res.json(groundedResponse);
   });
 

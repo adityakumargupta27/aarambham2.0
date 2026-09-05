@@ -26,10 +26,10 @@ import {
 
 const STARTER_QUESTIONS = [
   "What is the official allocation for Varanasi (LS-457)?",
-  "Check project PRJ-001 for cost inflation and milestone risk",
-  "Audit contractor CONT-101 (Apex Infra Ltd) for delayed projects",
-  "Show carried-forward roll-over funds for Wayanad",
-  "Explain risk calculation for Tender T-9281"
+  "What does MPLADS fund allocation mean?",
+  "How does AARAMBHA calculate a risk indicator?",
+  "What evidence should an auditor review before escalating a tender?",
+  "How should I use this platform for a constituency review?"
 ];
 
 export default function AiInvestigator() {
