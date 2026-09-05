@@ -303,7 +303,3 @@ export function startServer() {
     console.log(`AARAMBHA Server running on http://localhost:${port}/`);
   });
 }
-
-if (!process.env.VERCEL) {
-  startServer();
-}
